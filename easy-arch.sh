@@ -293,7 +293,8 @@ partprobe "$DISK"
 
 # Formatting the ESP as FAT32.
 print "Formatting the EFI Partition as FAT32."
-mkfs.fat -F 32 $ESP &>/dev/null
+#mkfs.fat -F 32 $ESP &>/dev/null
+mkfs.fat -F32 $ESP &>/dev/null
 
 # Creating a LUKS Container for the root partition.
 print "Creating LUKS Container for the root partition."
@@ -445,7 +446,7 @@ EOF
 
 # Pacman eye-candy features.
 print "Enabling colours, animations, and parallel in pacman."
-sed -Ei 's/^#(Color)$/\1\nILoveCandy/;s/^#(ParallelDownloads).*/\1 = 3/' /mnt/etc/pacman.conf
+sed -Ei 's/^#(Color)$/\1\nILoveCandy/;s/^#(ParallelDownloads).*/\1 = 2/' /mnt/etc/pacman.conf
 
 # Enabling various services.
 print "Enabling Reflector, automatic snapshots, BTRFS scrubbing and systemd-oomd."
